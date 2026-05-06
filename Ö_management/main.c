@@ -567,7 +567,7 @@ void removeEmployee(person Employee[100]) {
 
 			do
 			{
-				printf("Confirm removing user, ");
+				printf("Confirm removing employee, ");
 				printUsr(Employee, i);
 				printf("\n (y/n): ");
 				scanf(" %c", &usrAnswer);
@@ -594,7 +594,7 @@ void removeEmployee(person Employee[100]) {
 		//return 1;
 	}
 
-
+	clearScreen();
 
 }
 
@@ -611,6 +611,9 @@ void listEmployee(person Employee[100]) {
 	if (isAnyUsers(Employee) == false) {
 		printf("There are no employees. \n");
 	}
+
+	getch();
+	clearScreen();
 
 }
 
@@ -709,6 +712,8 @@ void loadFile(person Employee[100]) {
 
 	}
 	fclose(file_ptr);
+
+	clearScreen();
 }
 
 void saveFile(person Employee[100]) {
@@ -728,6 +733,34 @@ void saveFile(person Employee[100]) {
 	}
 	fclose(file_ptr);
 
+	clearScreen();
+}
+
+void Exit() {
+	clearScreen();
+	char usrAns;
+
+	do
+	{
+		printf("Any unsaved changes will be lost! Do you want to exit? (y/n) \n");
+		scanf(" %c", &usrAns);
+
+		if (usrAns == 'y') {
+			exit(0);
+		}
+		else if (usrAns == 'n')
+		{
+			clearScreen();
+			break;
+		}
+		else
+		{
+			clearScreen();
+			printf("Invalid input! \n");
+		}
+
+	} while (true);
+	
 }
 
 int main() {
@@ -765,7 +798,7 @@ int main() {
 			break;
 
 		case 8:
-			return 0;
+			Exit();
 
 		default:
 			break;
