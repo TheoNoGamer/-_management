@@ -86,7 +86,6 @@ void addEmployee(person Employee[100]) {
 			break;
 		}
 	}
-	//return 0;
 }
 
 bool isAnyUsers(person Employee[100]) {
@@ -695,7 +694,21 @@ void searchEmployee(person Employee[100]) {
 }
 
 void loadFile(person Employee[100]) {
+	FILE* file_ptr;
 
+	file_ptr = fopen("save.txt", "r");
+	if (file_ptr == NULL) {
+		printf("Error opening file!");
+		return 1;
+	}
+	for (int i = 0; i < 100; i++) {
+		if (fscanf(file_ptr, "%d %s %d %s %d %d \n", &Employee[i].active, Employee[i].name, &Employee[i].age, Employee[i].role, &Employee[i].salary, &Employee[i].ID) < 0) {
+			fclose(file_ptr);
+			return -1;
+		}
+
+	}
+	fclose(file_ptr);
 }
 
 void saveFile(person Employee[100]) {
